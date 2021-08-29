@@ -1,9 +1,10 @@
 import express from 'express';
+import { v4 } from 'uuid';
 
 const router = express.Router();
 
-router.get('/health', (request, response) => {
-    response.send('Server is online');
+router.get('/', (request, response) => {
+    response.redirect(`/${v4()}`);
 });
 
 export default router;
