@@ -19,7 +19,7 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
     socket.on('any-name-you-like', (roomId, userId) => {
-        console.log('Incoming socket data', { roomId, userId });
+        console.log('SOCKET > Incoming socket data', { roomId, userId });
         socket.join(roomId);
         // Send everyone in the room but don't send back
         socket.broadcast.to(roomId).emit('user-connected', userId);

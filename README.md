@@ -1,6 +1,9 @@
 # How to start this project
 1. Run `yarn start` in `/react` folder to start a React application;
 2. Run `yarn start` in `/server` folder to start a Node.js server;
+3. Run `yarn start` in `/peerjs-server` folder to start a PeerJs server;
+
+**Or** you can just run `yarn start` in the root folder that will run those three commands concurrently
 
 #Trends
 https://www.npmtrends.com/easyrtc-vs-peerjs-vs-rtcpeerconnection-vs-simple-peer-vs-simplewebrtc
