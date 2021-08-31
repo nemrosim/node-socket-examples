@@ -37,4 +37,3 @@ As of now, probably there have been many use cases of WebRTC across industries. 
 
 ### Client
 - socket.io-client
-
