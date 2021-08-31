@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
+import { SocketProps } from 'common-lib';
 
 import healthRoute from './routes/health';
 
