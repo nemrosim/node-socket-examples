@@ -9,4 +9,12 @@ server.on('disconnect', function (client) {
     console.log('PEER: Disconnected. ID:', client.getId());
 });
 
+server.on('message', (data) => {
+    // console.log('messsage');
+});
+
+server.on('error', (error) => {
+    console.log('Error', error);
+});
+
 server.listen();
