@@ -1,3 +1,28 @@
+### ⚠️ Peer server + Express + Socket.io
+```js
+/*
+    👉 ️NOTE: Use this approach only if you are not using socket at the same server
+    👉️ As we are using sockets here already - we will need to use a standalone peer server
+    👉 https://github.com/peers/peerjs-server/issues/192#issuecomment-672928466
+ 
+    Combining Peer with existing express app
+    https://github.com/peers/peerjs-server#combining-with-existing-express-app
+    Open the browser and check http://127.0.0.1:9000/peerjs/myapp
+ */
+
+const peerServer = ExpressPeerServer(httpServer, {
+    path: '/myapp',
+});
+
+peerServer.on('connection', (client) => {
+    console.log('Hello', client.getId());
+});
+
+app.use('/', peerServer);
+
+// =============================================================
+```
+
 ### Binary
 
 ```typescript

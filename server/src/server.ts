@@ -2,8 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
-import { SocketProps } from 'common-lib';
-
+import { SocketProps, SocketUserEmitDataProps, SocketEvents } from 'common-lib';
 import healthRoute from './routes/health';
 
 const app = express();
@@ -12,18 +11,42 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
     cors: {
-        // client host
+        /**
+         * Our React app will be running on this route
+         */
         origin: 'http://localhost:3006',
         methods: ['GET', 'POST'],
     },
 });
 
 io.on('connection', (socket) => {
-    socket.on('any-name-you-like', ({ userId, roomId }) => {
-        console.log('SOCKET > Incoming socket data', { roomId, userId });
+    /**
+     * This event will be called when client "emits" RoomConnection event
+     */
+    socket.on(SocketEvents.RoomConnection, ({ userId, roomId }: SocketProps) => {
+        /**
+         * This means that you "sent" messages only to that users that are in the current "room"
+         */
         socket.join(roomId);
-        // Send everyone in the room but don't send back
-        socket.broadcast.to(roomId).emit('user-connected', userId);
+
+        /**
+         * Send message everyone in the "room".
+         */
+        socket.broadcast.to(roomId).emit(SocketEvents.UserRoomJoin, {
+            userId,
+        } as SocketUserEmitDataProps);
+
+        /**
+         * ⚠️ NOTE: This is a workaround!
+         * "close" event of the "peer.js" package has an issue:
+         * "close" will not be triggered when user disconnects
+         * https://stackoverflow.com/questions/64651890/peerjs-close-video-call-not-firing-close-event/66518772#66518772
+         */
+        socket.on('disconnect', () => {
+            socket.broadcast.to(roomId).emit(SocketEvents.UserRoomLeft, {
+                userId,
+            } as SocketUserEmitDataProps);
+        });
     });
 });
 

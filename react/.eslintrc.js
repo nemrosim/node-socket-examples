@@ -21,6 +21,14 @@ module.exports = {
     },
     plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
     rules: {
+        /*
+         We need to disables eslint rule and enable ts rule
+         because of the false-positive enum error
+         https://github.com/typescript-eslint/typescript-eslint/issues/2621
+         */
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 'error',
+        // -------
         'react-hooks/exhaustive-deps': 'error',
         'react/prop-types': 'off',
         'no-var': 'error',
