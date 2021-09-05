@@ -7,7 +7,7 @@ import Peer from 'peerjs';
 export const socket = io(
     `${
         process.env.NODE_ENV === 'production'
-            ? 'https://webrtc-server-node.herokuapp.com/'
+            ? 'https://webrtc-server-node.herokuapp.com'
             : 'http://localhost'
     }:3001`,
 );
