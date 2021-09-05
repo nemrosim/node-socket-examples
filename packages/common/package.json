@@ -1,9 +1,10 @@
 {
-    "name": "@common/lib",
+    "name": "@nemrosim/web-rtc-common-types",
     "version": "1.0.1",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "private": false,
     "scripts": {
         "build": "tsc",
         "build:local": "tsc --watch",
