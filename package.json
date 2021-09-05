@@ -2,7 +2,8 @@
     "name": "node-socket-webrtc-examples",
     "version": "1.0.0",
     "description": "1. Run `yarn start` in `/react` folder to start a React application; 2. Run `yarn start` in `/server` folder to start a Node.js server;",
-    "main": "index.js",
+    "private": true,
+    "workspaces": ["packages/*"],
     "scripts": {
         "start:withStandalonePeerServer": "concurrently \"cd server && yarn start\" \"cd react && yarn start\" \"cd peerjs-server && yarn start\"",
         "start": "concurrently \"cd server && yarn start\" \"cd react && yarn start\""
@@ -16,8 +17,5 @@
     "bugs": {
         "url": "https://github.com/nemrosim/node-socket-examples/issues"
     },
-    "homepage": "https://github.com/nemrosim/node-socket-examples#readme",
-    "devDependencies": {
-        "concurrently": "^6.2.1"
-    }
+    "homepage": "https://github.com/nemrosim/node-socket-examples#readme"
 }
