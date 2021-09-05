@@ -20,8 +20,8 @@
         "@types/react-dom": "^17.0.0"
     },
     "scripts": {
-        "start:dev": "ESLINT_NO_DEV_ERRORS=true PORT=3006 react-scripts start",
-        "start": "react-scripts start",
+        "start": "NODE_ENV=production react-scripts start",
+        "start:dev": "ESLINT_NO_DEV_ERRORS=true PORT=3006 NODE_ENV=development react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

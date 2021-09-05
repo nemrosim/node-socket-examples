@@ -9,6 +9,8 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
+console.log('NODE+ENV', process.env.NODE_ENV);
+
 const io = new Server(httpServer, {
     cors: {
         /**

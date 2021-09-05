@@ -1,6 +1,8 @@
 import { io } from 'socket.io-client';
 import Peer from 'peerjs';
 
+console.log('NODE_ENV', process.env.NODE_ENV);
+
 /**
  * If your front is served on the same domain as your server, you can simply use:
  */
