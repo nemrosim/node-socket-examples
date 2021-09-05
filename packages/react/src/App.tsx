@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { SocketEvents, SocketProps, SocketUserEmitDataProps } from '@common/lib';
+import { SocketEvents, SocketProps, SocketUserEmitDataProps } from '@nemrosim/web-rtc-common-types';
 import { peer, socket } from './utils';
 import { ROOM_ID, REMOTE_STREAM_VIDEO_ELEMENT } from './constants';
 

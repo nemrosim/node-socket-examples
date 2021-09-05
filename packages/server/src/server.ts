@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
-import { SocketProps, SocketUserEmitDataProps, SocketEvents } from '@common/lib';
+import { SocketProps, SocketUserEmitDataProps, SocketEvents } from '@nemrosim/web-rtc-common-types';
 import healthRoute from './routes/health';
 
 const app = express();
