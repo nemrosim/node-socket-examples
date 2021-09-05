@@ -1,5 +1,8 @@
 import { PeerServer } from 'peer';
-const server = PeerServer({ port: 9000, path: '/myapp' });
+const server = PeerServer({
+    port: (process.env.PORT && parseInt(process.env.PORT, 10)) || 9000,
+    path: '/myapp',
+});
 
 server.on('connection', function (client) {
     console.log('PEER: Connected id:', client.getId());

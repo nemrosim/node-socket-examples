@@ -4,13 +4,22 @@ import Peer from 'peerjs';
 /**
  * If your front is served on the same domain as your server, you can simply use:
  */
-export const socket = io('http://localhost:3001');
+export const socket = io(
+    `${
+        process.env.NODE_ENV === 'production'
+            ? 'https://webrtc-server-node.herokuapp.com/'
+            : 'http://localhost'
+    }:3001`,
+);
 
 const useCloudPeerServer = false;
 const generateUniqueId = true;
 
 const peerOptions = {
-    host: 'localhost',
+    host:
+        process.env.NODE_ENV === 'production'
+            ? 'https://webrtc-server-peerjs.herokuapp.com/'
+            : 'localhost',
     port: 9000,
     path: '/myapp',
     secure: false, // need SSL

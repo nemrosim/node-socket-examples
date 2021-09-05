@@ -14,7 +14,10 @@ const io = new Server(httpServer, {
         /**
          * Our React app will be running on this route
          */
-        origin: 'http://localhost:3006',
+        origin:
+            process.env.NODE_ENV === 'production'
+                ? 'https://webrtc-react-node.herokuapp.com:3006'
+                : 'http://localhost:3006',
         methods: ['GET', 'POST'],
     },
 });
