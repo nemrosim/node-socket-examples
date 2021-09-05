@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
          * https://stackoverflow.com/questions/64651890/peerjs-close-video-call-not-firing-close-event/66518772#66518772
          */
         socket.on('disconnect', () => {
-            socket.broadcast.to(roomId).emit(SocketEvents.UserRoomLeft, {
+            socket.broadcast.to(roomId).emit(SocketEvents.UserDisconnected, {
                 userId,
             } as SocketUserEmitDataProps);
         });

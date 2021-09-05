@@ -6,6 +6,11 @@
     "workspaces": [
         "packages/*"
     ],
+    "engines": {
+        "node": "14.x",
+        "npm": "6.x",
+        "yarn": "1.x"
+    },
     "scripts": {
         "start:withStandalonePeerServer": "concurrently \"cd server && yarn start\" \"cd react && yarn start\" \"cd peerjs-server && yarn start\"",
         "start": "concurrently \"cd packages/server && yarn start\" \"cd packages/react && yarn start\"",

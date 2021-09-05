@@ -7,8 +7,6 @@ const UsersStatus: React.FC<{ connectedUserIds: string[]; disconnectedUserIds: s
     connectedUserIds,
     disconnectedUserIds,
 }) => {
-    console.log('Disc', disconnectedUserIds);
-    console.log('Connected', disconnectedUserIds);
     return (
         <>
             {connectedUserIds.map((connectedUserId) => {
@@ -46,7 +44,7 @@ export const App: React.FC = () => {
         /**
          * 2.
          */
-        socket.on(SocketEvents.UserRoomLeft, ({ userId }) => {
+        socket.on(SocketEvents.UserDisconnected, ({ userId }) => {
             const userIdVideo = document.getElementById(userId);
             userIdVideo?.remove();
 
