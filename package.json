@@ -3,10 +3,13 @@
     "version": "1.0.0",
     "description": "1. Run `yarn start` in `/react` folder to start a React application; 2. Run `yarn start` in `/server` folder to start a Node.js server;",
     "private": true,
-    "workspaces": ["packages/*"],
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
         "start:withStandalonePeerServer": "concurrently \"cd server && yarn start\" \"cd react && yarn start\" \"cd peerjs-server && yarn start\"",
-        "start": "concurrently \"cd server && yarn start\" \"cd react && yarn start\""
+        "start": "concurrently \"cd packages/server && yarn start\" \"cd packages/react && yarn start\"",
+        "heroku-postbuild": "yarn workspaces run build"
     },
     "repository": {
         "type": "git",
@@ -17,5 +20,8 @@
     "bugs": {
         "url": "https://github.com/nemrosim/node-socket-examples/issues"
     },
-    "homepage": "https://github.com/nemrosim/node-socket-examples#readme"
+    "homepage": "https://github.com/nemrosim/node-socket-examples#readme",
+    "dependencies": {
+        "concurrently": "^6.2.1"
+    }
 }

@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
 app.use(cors());
 app.use(healthRoute);
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const listeningListener = () => {
     console.log(`🚀 Server started at http://localhost:${PORT}`);
 };
