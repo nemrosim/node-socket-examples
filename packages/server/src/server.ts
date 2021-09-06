@@ -18,7 +18,12 @@ const options = {
             ? `https://${process.env.REACT_APP_HOST}`
             : 'http://localhost:3006',
         methods: ['GET', 'POST'],
+
+        // Trying to fix 400 BAD request
+        transports: ['websocket', 'polling'],
+        credentials: true,
     },
+    allowEIO3: true,
 };
 
 console.log('!OPTIONS', options);
@@ -55,6 +60,14 @@ io.on('connection', (socket) => {
             } as SocketUserEmitDataProps);
         });
     });
+});
+
+app.get('/options', (request, response) => {
+    response.send(JSON.stringify(options));
+});
+
+app.get('/envs', (request, response) => {
+    response.send(JSON.stringify(process.env));
 });
 
 app.use(cors());
