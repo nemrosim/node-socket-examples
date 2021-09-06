@@ -20,7 +20,7 @@ const options = {
         methods: ['GET', 'POST'],
 
         // Trying to fix 400 BAD request
-        transports: ['websocket', 'polling'],
+        transports: ['websocket', 'polling', 'flashsocket'],
         credentials: true,
     },
     allowEIO3: true,

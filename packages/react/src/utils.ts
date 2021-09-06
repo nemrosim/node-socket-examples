@@ -3,11 +3,19 @@ import Peer from 'peerjs';
 
 console.log('ENVs', process.env);
 
+const connectionOptions = {
+    forceNew: true,
+    reconnectionAttempts: 5,
+    timeout: 10000,
+    transports: ['websocket'],
+};
+
 /**
  * If your front is served on the same domain as your server, you can simply use:
  */
 export const socket = io(
     `${process.env.REACT_APP_WDS_SOCKET_HOST}:${process.env.REACT_APP_WDS_SOCKET_PORT}`,
+    connectionOptions,
 );
 
 const useCloudPeerServer = false;
@@ -21,6 +29,7 @@ const peerOptions = {
 };
 
 console.log('PEER OPTION', peerOptions);
+console.log('Socket options', connectionOptions);
 
 /**
  * If you will not pass an "id" prop - peer js server will return you a unique ID
