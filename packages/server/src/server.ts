@@ -9,9 +9,7 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
-console.log('ENV', process.env);
-
-const io = new Server(httpServer, {
+const options = {
     cors: {
         /**
          * Our React app will be running on this route
@@ -21,7 +19,12 @@ const io = new Server(httpServer, {
             : 'http://localhost:3006',
         methods: ['GET', 'POST'],
     },
-});
+};
+
+console.log('!OPTIONS', options);
+console.log('!ENV', process.env);
+
+const io = new Server(httpServer, options);
 
 io.on('connection', (socket) => {
     /**
