@@ -17,7 +17,7 @@ const io = new Server(httpServer, {
          * Our React app will be running on this route
          */
         origin: process.env.REACT_APP_HOST
-            ? `https://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_POST}`
+            ? `https://${process.env.REACT_APP_HOST}`
             : 'http://localhost:3006',
         methods: ['GET', 'POST'],
     },
