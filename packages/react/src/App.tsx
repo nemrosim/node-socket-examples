@@ -82,7 +82,7 @@ export const App: React.FC = () => {
          */
         const stream = await navigator.mediaDevices.getUserMedia({
             video: true,
-            audio: false,
+            audio: true,
         });
 
         /**
