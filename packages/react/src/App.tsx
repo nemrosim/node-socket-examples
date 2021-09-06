@@ -35,6 +35,7 @@ export const App: React.FC = () => {
          * 1.
          */
         peer.on('open', (id) => {
+            console.log('Peer. open USER id', id);
             socket.emit(SocketEvents.RoomConnection, {
                 userId: id,
                 roomId: ROOM_ID,
@@ -58,9 +59,11 @@ export const App: React.FC = () => {
          * 3.
          */
         socket.on(SocketEvents.UserRoomJoin, ({ userId }: SocketUserEmitDataProps) => {
+            console.log('User joined the room', userId);
             const mediaConnection = peer.call(userId, stream);
 
             mediaConnection.on('stream', (stream) => {
+                console.log('Media connection', stream);
                 const video = document.createElement('video');
                 video.srcObject = stream;
                 video.id = userId;

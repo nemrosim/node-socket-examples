@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
      * This event will be called when client "emits" RoomConnection event
      */
     socket.on(SocketEvents.RoomConnection, ({ userId, roomId }: SocketProps) => {
+        console.log('SERVER. Room connection', { userId, roomId });
         /**
          * This means that you "sent" messages only to that users that are in the current "room"
          */
