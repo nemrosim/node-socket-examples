@@ -9,17 +9,16 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
-console.log('NODE+ENV', process.env.NODE_ENV);
+console.log('ENV', process.env);
 
 const io = new Server(httpServer, {
     cors: {
         /**
          * Our React app will be running on this route
          */
-        origin:
-            process.env.NODE_ENV === 'production'
-                ? 'https://webrtc-react-node.herokuapp.com:3006'
-                : 'http://localhost:3006',
+        origin: process.env.REACT_APP_HOST
+            ? `https://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_POST}`
+            : 'http://localhost:3006',
         methods: ['GET', 'POST'],
     },
 });
