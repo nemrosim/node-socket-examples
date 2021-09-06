@@ -13,10 +13,7 @@ const connectionOptions = {
 /**
  * If your front is served on the same domain as your server, you can simply use:
  */
-export const socket = io(
-    `${process.env.REACT_APP_WDS_SOCKET_HOST}:${process.env.REACT_APP_WDS_SOCKET_PORT}`,
-    connectionOptions,
-);
+export const socket = io(`${process.env.REACT_APP_WDS_SOCKET_HOST}`, connectionOptions);
 
 const useCloudPeerServer = false;
 const generateUniqueId = true;
