@@ -1,0 +1,58 @@
+@keyframes scale-in-center {
+      0% {
+            transform: scale(0);
+            opacity: 1;
+      }
+      100% {
+            transform: scale(1);
+            opacity: 1;
+      }
+}
+
+.welcome {
+      margin: 20px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(45, 46, 41);
+      animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+      box-shadow: 1.2px 1.9px 5.1px rgba(0, 0, 0, 0.017),
+      3.1px 4.8px 12.9px rgba(0, 0, 0, 0.025),
+      6.4px 9.7px 26.4px rgba(0, 0, 0, 0.03),
+      13.1px 20.1px 54.4px rgba(0, 0, 0, 0.035),
+      36px 55px 149px rgba(0, 0, 0, 0.04);
+}
+
+.welcome button {
+      margin: 20px;
+      box-shadow: 0px 1px 0px 0px #1c1b18;
+      background: #eae0c2 linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+      border-radius:15px;
+      border:2px solid #333029;
+      display:inline-block;
+      cursor:pointer;
+      color:#505739;
+      font-family: Arial, serif;
+      font-size:14px;
+      font-weight:bold;
+      padding:12px 16px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #ffffff;
+}
+.welcome button:hover {
+      background: #ccc2a6 linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+}
+
+.welcome button:disabled {
+      background: #c1c1c1;
+}
+
+.welcome input {
+      border: 2px solid;
+      border-radius: 3px;
+      font-size: 18px;
+      height: 30px;
+      margin: 20px;
+}
+

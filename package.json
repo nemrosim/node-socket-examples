@@ -14,7 +14,13 @@
     "scripts": {
         "start:dev:withStandalonePeerServer": "concurrently \"cd server && yarn start\" \"cd react && yarn start\" \"cd peerjs-server && yarn start\"",
         "start:dev": "concurrently \"cd packages/server && yarn start\" \"cd packages/react && yarn start\"",
-        "heroku-postbuild": "yarn workspaces run build"
+        "heroku-postbuild": "yarn workspaces run build",
+        "clean:all": "rm -rf node_modules && yarn clean:common && yarn clean:peer && yarn clean:server",
+        "clean:common": "cd packages/common && rm -rf node_modules",
+        "clean:peer": "cd packages/peerjs-server && rm -rf node_modules",
+        "clean:react": "cd packages/react && rm -rf node_modules",
+        "clean:server": "cd packages/server && rm -rf node_modules",
+        "clean-script-alternative":"find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +"
     },
     "repository": {
         "type": "git",

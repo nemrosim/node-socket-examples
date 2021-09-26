@@ -22,7 +22,7 @@ module.exports = {
     plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
     rules: {
         /*
-         We need to disables eslint rule and enable ts rule
+         We need to disables eslint rule and enable TS rule
          because of the false-positive enum error
          https://github.com/typescript-eslint/typescript-eslint/issues/2621
          */

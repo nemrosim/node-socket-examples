@@ -4,8 +4,6 @@ const server = PeerServer({
     path: '/myapp',
 });
 
-console.log('NODE_ENV', process.env.NODE_ENV);
-
 server.on('connection', function (client) {
     console.log('PEER: Connected id:', client.getId());
 });

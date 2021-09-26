@@ -14,9 +14,7 @@ const options = {
         /**
          * Our React app will be running on this route
          */
-        origin: process.env.REACT_APP_HOST
-            ? `https://${process.env.REACT_APP_HOST}`
-            : 'http://localhost:3006',
+        origin: process.env.REACT_APP_HOST,
         methods: ['GET', 'POST'],
 
         // Trying to fix 400 BAD request
@@ -25,9 +23,6 @@ const options = {
     },
     allowEIO3: true,
 };
-
-console.log('!OPTIONS', options);
-console.log('!ENV', process.env);
 
 const io = new Server(httpServer, options);
 
