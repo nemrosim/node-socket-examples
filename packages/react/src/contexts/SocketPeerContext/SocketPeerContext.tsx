@@ -10,9 +10,6 @@ export const SocketPeerContextProvider: React.FC = ({ children }) => {
     const [socketError, setSocketError] = useState<Error>();
     const [isSocketConnected, setIsSocketConnected] = useState<boolean>(false);
 
-    const [connectedUserIds, setConnectedUserIds] = useState<Array<string>>([]);
-    const [disconnectedUserIds, setDisconnectedUserIds] = useState<Array<string>>([]);
-
     const [streams, setStreams] = useState<Array<{ stream: MediaStream; id: string }>>([]);
     const [currentUserId, setCurrentUserId] = useState<string>('');
 
@@ -40,10 +37,6 @@ export const SocketPeerContextProvider: React.FC = ({ children }) => {
                 currentUserId,
                 setCurrentUserId,
                 setIsSocketConnected,
-                connectedUserIds,
-                setConnectedUserIds,
-                disconnectedUserIds,
-                setDisconnectedUserIds,
                 streams,
                 setStreams,
             }}

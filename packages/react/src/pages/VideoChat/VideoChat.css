@@ -1,0 +1,4 @@
+.VideoChat .VideoStreamContainer {
+      display: flex;
+      flex-wrap: wrap;
+}

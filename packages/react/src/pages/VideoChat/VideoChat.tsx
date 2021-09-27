@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react';
-import { UsersStatus, VideoStream } from '../../components';
+import { VideoStream } from '../../components';
 import { SocketEvents, SocketProps, SocketUserEmitDataProps } from '@nemrosim/web-rtc-common-types';
 import { useParams } from 'react-router-dom';
-import { REMOTE_STREAM_VIDEO_ELEMENT } from '../../constants';
 import { useSocketPeerContext } from '../../contexts';
 import { peer } from '../../utils/peer';
 import { socket } from '../../utils/socket';
+import './VideoChat.css';
 
-export const VideoChat = () => {
-    const {
-        socketError,
-        isSocketConnected,
-        setDisconnectedUserIds,
-        currentUserId,
-        streams,
-        setStreams,
-    } = useSocketPeerContext();
+const mediaConstraints = {
+    video: true,
+    audio: false,
+};
+
+export const VideoChat: React.FC = () => {
+    const { socketError, isSocketConnected, currentUserId, streams, setStreams } =
+        useSocketPeerContext();
     const { roomId } = useParams<{ roomId: string }>();
 
     useEffect(() => {
@@ -25,14 +24,9 @@ export const VideoChat = () => {
                 roomId,
             } as SocketProps);
 
-            navigator.mediaDevices
-                .getUserMedia({
-                    video: true,
-                    audio: false,
-                })
-                .then((stream) => {
-                    setStreams((prevState) => [...prevState, { stream, id: currentUserId }]);
-                });
+            navigator.mediaDevices.getUserMedia(mediaConstraints).then((stream) => {
+                setStreams((prevState) => [...prevState, { stream, id: currentUserId }]);
+            });
         }
 
         return () => {
@@ -41,67 +35,45 @@ export const VideoChat = () => {
     }, [roomId, currentUserId, setStreams]);
 
     useEffect(() => {
-        /**
-         * Use joined the room
-         */
         socket.on(SocketEvents.UserRoomJoin, ({ userId }: SocketUserEmitDataProps) => {
-            navigator.mediaDevices
-                .getUserMedia({
-                    video: true,
-                    audio: false,
-                })
-                .then((stream) => {
-                    const mediaConnection = peer.call(userId, stream);
+            navigator.mediaDevices.getUserMedia(mediaConstraints).then((stream) => {
+                const mediaConnection = peer.call(userId, stream);
 
-                    mediaConnection.on('stream', (stream) => {
-                        setStreams((prevState) => [...prevState, { stream, id: userId }]);
-                    });
+                mediaConnection.on('stream', (stream) => {
+                    setStreams((prevState) => [...prevState, { stream, id: userId }]);
                 });
+            });
 
             // setConnectedUserIds((prevState) => [...prevState, userId]);
         });
 
-        /**
-         * 2.
-         */
         socket.on(SocketEvents.UserDisconnected, ({ userId }) => {
-            const userIdVideo = document.getElementById(userId);
-            userIdVideo?.remove();
-
-            const remoteStreamVideo = document.getElementById(REMOTE_STREAM_VIDEO_ELEMENT);
-            remoteStreamVideo?.remove();
-
-            setDisconnectedUserIds((prevState) => [...prevState, userId]);
+            setStreams((prevState) => {
+                return prevState.filter((item) => item.id !== userId);
+            });
         });
 
         /**
          * Another "peer" is calling to us
          * His id will be stored in "mediaConnection.peer" value
          * On his call - we are answering with our stream "mediaConnection.answer(stream)"
-         *
-         * 6.
          * More info about media calls: https://github.com/peers/peerjs#media-calls
          */
         peer.on('call', (mediaConnection) => {
-            navigator.mediaDevices
-                .getUserMedia({
-                    video: true,
-                    audio: false,
-                })
-                .then((stream) => {
-                    mediaConnection.answer(stream);
-                });
-
-            const peerUserId = mediaConnection.peer;
+            navigator.mediaDevices.getUserMedia(mediaConstraints).then((stream) => {
+                mediaConnection.answer(stream);
+            });
 
             mediaConnection.on('stream', (remoteStream) => {
-                const streamAlreadyExist = streams.find((e) => e.id === peerUserId);
+                const peerUserId = mediaConnection.peer;
+                const streamAlreadyExist = streams.find((item) => item.id === peerUserId);
 
-                !streamAlreadyExist &&
+                if (!streamAlreadyExist) {
                     setStreams((prevState) => [
                         ...prevState,
                         { stream: remoteStream, id: peerUserId },
                     ]);
+                }
             });
 
             mediaConnection.on('close', () => {
@@ -123,13 +95,13 @@ export const VideoChat = () => {
 
     if (streams) {
         return (
-            <>
-                {currentUserId && <h1>Current user id: {currentUserId}</h1>}
-                {streams.map((e) => {
-                    return <VideoStream key={e.id} stream={e.stream} id={e.id} />;
-                })}
-                <UsersStatus />
-            </>
+            <div className="VideoChat">
+                <div className="VideoStreamContainer">
+                    {streams.map((e) => {
+                        return <VideoStream key={e.id} stream={e.stream} id={e.id} />;
+                    })}
+                </div>
+            </div>
         );
     }
 

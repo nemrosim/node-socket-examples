@@ -47,9 +47,12 @@ to debug issues - for example your colleague might be on a version of Yarn
 that doesn’t support - a feature you rely on, such as the workspaces.
 
 ```
-yarn policies set-version will download the latest stable release
-yarn policies set-version --rc will download the latest rc release
-yarn policies set-version 1.13.0 will download a specific version
-yarn policies set-version '^1.12.0' will download the latest minor
+yarn policies set-version 1.19.0 will download a specific version
 ```
+
+# Heroku status
+If you are fasing issues related to heroku builds
+`Build timed out while waiting to start.`
+you can check heroku status by this link
+https://status.heroku.com/
 

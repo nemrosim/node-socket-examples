@@ -10,12 +10,6 @@ export interface SocketPeerContextProps {
     currentUserId: string;
     setCurrentUserId: React.Dispatch<React.SetStateAction<string>>;
 
-    connectedUserIds: Array<string>;
-    setConnectedUserIds: React.Dispatch<React.SetStateAction<Array<string>>>;
-
-    disconnectedUserIds: Array<string>;
-    setDisconnectedUserIds: React.Dispatch<React.SetStateAction<Array<string>>>;
-
     streams: Array<{ stream: MediaStream; id: string }>;
     setStreams: React.Dispatch<React.SetStateAction<Array<{ stream: MediaStream; id: string }>>>;
 }

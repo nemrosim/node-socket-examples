@@ -2,14 +2,15 @@
       background-color: grey;
       display: flex;
       flex-direction: column;
-      max-width: 400px;
+      max-width: 47vw;
       border-radius: 10px;
       padding: 5px;
       margin: 5px;
+      flex-grow: 1;
 }
 
 @media (max-width: 768px) {
       .VideoStream {
-            max-width: none;
+            max-width: 97vw;
       }
 }

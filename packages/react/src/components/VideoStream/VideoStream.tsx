@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { VideoStreamProps } from './types';
-import './VideoStream.css';
 import { useSocketPeerContext } from '../../contexts';
+import './VideoStream.css';
 
 export const VideoStream: React.FC<VideoStreamProps> = ({ stream, id }) => {
     const { currentUserId } = useSocketPeerContext();

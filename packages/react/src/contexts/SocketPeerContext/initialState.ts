@@ -10,12 +10,6 @@ export const InitialState: SocketPeerContextProps = {
     currentUserId: '',
     setCurrentUserId: () => undefined,
 
-    connectedUserIds: [],
-    setConnectedUserIds: () => undefined,
-
     streams: [],
     setStreams: () => undefined,
-
-    disconnectedUserIds: [],
-    setDisconnectedUserIds: () => undefined,
 };
