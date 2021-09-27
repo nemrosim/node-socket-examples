@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { UsersStatus, VideoStream } from '../../components';
 import { SocketEvents, SocketProps, SocketUserEmitDataProps } from '@nemrosim/web-rtc-common-types';
 import { useParams } from 'react-router-dom';
@@ -11,7 +11,6 @@ export const VideoChat = () => {
     const {
         socketError,
         isSocketConnected,
-        setConnectedUserIds,
         setDisconnectedUserIds,
         currentUserId,
         streams,
@@ -96,7 +95,6 @@ export const VideoChat = () => {
             const peerUserId = mediaConnection.peer;
 
             mediaConnection.on('stream', (remoteStream) => {
-
                 const streamAlreadyExist = streams.find((e) => e.id === peerUserId);
 
                 !streamAlreadyExist &&
@@ -112,6 +110,7 @@ export const VideoChat = () => {
                 // video.remove();
             });
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (!isSocketConnected) {

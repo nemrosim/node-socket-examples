@@ -8,7 +8,6 @@ export const SocketPeerContext = React.createContext<SocketPeerContextProps>(Ini
 
 export const SocketPeerContextProvider: React.FC = ({ children }) => {
     const [socketError, setSocketError] = useState<Error>();
-    const [peerError, setPeerError] = useState<Error>();
     const [isSocketConnected, setIsSocketConnected] = useState<boolean>(false);
 
     const [connectedUserIds, setConnectedUserIds] = useState<Array<string>>([]);
@@ -25,7 +24,7 @@ export const SocketPeerContextProvider: React.FC = ({ children }) => {
             setSocketError(error);
         });
         peer.on('error', (error) => {
-            setPeerError(error);
+            console.error('Peer error', error);
         });
         peer.on('open', (id) => {
             setCurrentUserId(id);
