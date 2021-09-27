@@ -37,3 +37,19 @@ As of now, probably there have been many use cases of WebRTC across industries. 
 
 ### Client
 - socket.io-client
+
+# Project uses enforced yarn version
+Enforcing Yarn’s version across your project
+When working inside a team, you usually end up in the situation where one of your
+colleagues uses a different version of Yarn than you.
+While usually inconsequential, it might sometimes cause subtle and hard
+to debug issues - for example your colleague might be on a version of Yarn
+that doesn’t support - a feature you rely on, such as the workspaces.
+
+```
+yarn policies set-version will download the latest stable release
+yarn policies set-version --rc will download the latest rc release
+yarn policies set-version 1.13.0 will download a specific version
+yarn policies set-version '^1.12.0' will download the latest minor
+```
+
